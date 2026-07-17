@@ -1,0 +1,26 @@
+{
+  "name": "ts-playground",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Self-paced applied TypeScript course: JS foundations → TypeScript → AI engineering (agents, RAG, multi-agent systems)",
+  "scripts": {
+    "ts": "tsx",
+    "check": "tsc --noEmit --strict --target es2022 --module preserve --skipLibCheck --types node",
+    "check:all": "tsc --noEmit -p tsconfig.json",
+    "check:solutions": "tsc --noEmit -p tsconfig.solutions.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.56.0",
+    "@huggingface/transformers": "^3.5.0",
+    "dotenv": "^16.4.5",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  }
+}
