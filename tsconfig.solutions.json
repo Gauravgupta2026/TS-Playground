@@ -1,5 +1,5 @@
 {
   "extends": "./tsconfig.json",
   "include": ["helpers", "solutions"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "solutions/capstone"]
 }
