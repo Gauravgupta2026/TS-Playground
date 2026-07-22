@@ -73,7 +73,20 @@ needed for RAG.
 | 7. RAG from Scratch | `phases/07-rag-pipeline/` | Chunking, embeddings, vector search, cited retrieval — built by hand |
 | 8. Multi-Agent Systems | `phases/08-multi-agent/` | CrewAI/AutoGen-style orchestration, implemented yourself in TS |
 | 9. Readiness Check | `phases/09-readiness-check/` | Prove it: four unguided drills, no comments, just specs |
-| Capstone | `capstone/` | A RAG-powered multi-agent research CLI — real project, portfolio-grade |
+
+## Projects (after Phase 9)
+
+Three hands-on projects, gated by Phase 9's readiness drills, all living
+under `capstone/`. The techniques top AI labs actually write about — context
+engineering and agent harnesses, then the production layer, then a full
+multi-agent system — grounded in primary sources (linked in each
+`LESSON.md`), built by hand, offline where possible.
+
+| Project | Folder | You'll be able to… |
+|---|---|---|
+| 1. Context Engineering & Agent Harnesses | `capstone/12-context-engineering/` | Budgeted context assembly, compaction + tool-result clearing, agentic memory, subagent isolation, a long-running harness with checkpoint/recovery |
+| 2. Applied AI in Production | `capstone/13-applied-ai-production/` | Contextual retrieval + BM25, hybrid search with RRF, reranking, bias-aware LLM-as-judge, semantic caching, OTel GenAI tracing, guardrail pipelines — composed into a production RAG endpoint |
+| 3. Multi-Agent Crew (capstone) | `capstone/` | A RAG-powered multi-agent research CLI — real project, portfolio-grade |
 
 ### Advanced track — systems design (after the capstone)
 
@@ -85,18 +98,5 @@ clock (no waiting, no flakiness). Same broken-then-fix loop as the rest.
 |---|---|---|
 | 10. Systems Design Primitives | `phases/10-systems-design/` | Build rate limiters, debouncers, load balancers, LRU/TTL caches, backoff, circuit breakers, semaphores/pools, a typed event bus — then compose them into a resilient model client |
 | 11. Distributed Systems | `phases/11-distributed/` | Consistent hashing, sharding, leader election, distributed rate limiting, idempotency — capped by a sharded embedding-cache cluster |
-
-### Frontier track — how top AI labs build today (2025–26)
-
-The techniques Anthropic/OpenAI engineers actually write about: context
-engineering and agent harnesses, then the production layer — contextual
-retrieval, LLM-as-judge evals, semantic caching, OpenTelemetry tracing, and
-guardrails. Grounded in primary sources (linked in each `LESSON.md`), built by
-hand, offline.
-
-| Phase | Folder | You'll be able to… |
-|---|---|---|
-| 12. Context Engineering & Agent Harnesses | `phases/12-context-engineering/` | Budgeted context assembly, compaction + tool-result clearing, agentic memory, subagent isolation, a long-running harness with checkpoint/recovery |
-| 13. Applied AI in Production | `phases/13-applied-ai-production/` | Contextual retrieval + BM25, hybrid search with RRF, reranking, bias-aware LLM-as-judge, semantic caching, OTel GenAI tracing, guardrail pipelines — composed into a production RAG endpoint |
 
 Track where you are in `PROGRESS.md`.

@@ -2,8 +2,8 @@
  * Phase 12 · Exercise 04 — Subagent context isolation
  *
  * Both must pass (no API key needed):
- *   npm run ts    phases/12-context-engineering/04-subagent-isolation.ts
- *   npm run check phases/12-context-engineering/04-subagent-isolation.ts
+ *   npm run ts    capstone/12-context-engineering/04-subagent-isolation.ts
+ *   npm run check capstone/12-context-engineering/04-subagent-isolation.ts
  *
  * The multiplier of agentic systems: a subagent explores in its OWN window —
  * thousands of tokens of searching and reading — and returns only a condensed

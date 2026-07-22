@@ -1,0 +1,49 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import StreakGraph from "../islands/StreakGraph";
+import PhaseList from "../islands/PhaseList";
+import { getPhases } from "../lib/phases";
+
+const phases = getPhases();
+const phaseRows = phases.map((p) => ({
+  slug: p.slug,
+  number: p.number,
+  title: p.title,
+  exerciseSlugs: p.exercises.map((e) => e.slug),
+}));
+const totalExercises = phases.reduce((n, p) => n + p.exercises.length, 0);
+---
+
+<BaseLayout title="Home" active="home">
+  <div class="container" style="padding:56px 28px 30px;">
+    <div class="kicker" style="margin-bottom:22px;">HOME · Curriculum v1.0 · 2026</div>
+    <h1 class="display">Learn TypeScript &amp;<br />applied AI, <span style="color:var(--accent);">for real.</span></h1>
+    <p class="lede">
+      {phases.length} phases, {totalExercises} runnable exercises — from JavaScript foundations to RAG pipelines and
+      multi-agent systems. Every lesson runs on your own machine. No paywall, no fluff — just steady progress you can see.
+    </p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:30px;">
+      <a href="/phases/01-js-foundations/" class="btn btn--primary">Start learning →</a>
+      <a href="/phases/" class="btn btn--secondary">Browse the catalog</a>
+    </div>
+  </div>
+
+  <div class="container" style="padding:24px 28px 20px;">
+    <StreakGraph client:load />
+  </div>
+
+  <div class="container" style="padding:34px 28px 60px;">
+    <div class="kicker" style="margin-bottom:8px;">Curriculum · {phases.length} phases</div>
+    <p class="prose" style="margin:0 0 22px;">Pick up where you left off. Each phase ships when its lessons, exercises, and checkpoint are all written.</p>
+    <PhaseList client:load phases={phaseRows} />
+
+    <a href="/projects/" class="card" style="display:flex;align-items:center;justify-content:space-between;gap:16px;color:inherit;margin-top:26px;">
+      <div>
+        <div class="eyebrow-label" style="color:var(--accent-ink);margin-bottom:6px;">After Phase 9</div>
+        <div class="subhead" style="font-size:22px;">Then: the Projects track →</div>
+        <div class="prose" style="margin:6px 0 0;">Context engineering, applied AI in production, and the Multi-Agent Crew capstone.</div>
+      </div>
+      <span style="color:var(--accent-ink);font-weight:600;font-size:14.5px;white-space:nowrap;">Open →</span>
+    </a>
+  </div>
+</BaseLayout>

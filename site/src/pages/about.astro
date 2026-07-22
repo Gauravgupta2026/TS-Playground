@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getPhases } from "../lib/phases";
+
+const phases = getPhases();
+const totalExercises = phases.reduce((n, p) => n + p.exercises.length, 0);
+---
+
+<BaseLayout title="About" active="about">
+  <div class="container" style="padding:56px 28px 70px;max-width:760px;">
+    <div class="kicker" style="margin-bottom:22px;">About</div>
+    <h1 class="heading" style="font-size:44px;margin-top:0;">Mistakes are the curriculum.</h1>
+    <p class="lede" style="max-width:none;">
+      A self-paced, hands-on course. It starts at JavaScript foundations, builds to serious TypeScript,
+      and ends where the industry actually uses TS for AI: agent loops, RAG pipelines, and multi-agent systems.
+    </p>
+
+    <div class="hairline" style="margin:34px 0;"></div>
+
+    <h2 class="subhead" style="font-size:24px;margin-bottom:12px;">How it works</h2>
+    <p class="prose" style="max-width:none;margin-bottom:16px;">
+      Exercise files ship broken or incomplete on purpose. You clone the repo, run a file, read the compiler
+      or runtime error, fix the code, and re-run — that loop is the whole course. This site is a reading
+      companion for the {phases.length} phases and {totalExercises} exercises; the actual work happens in
+      your own terminal.
+    </p>
+
+    <div class="callout callout--tip" style="margin-bottom:24px;">
+      <span class="callout__tag">Setup</span>
+      <span>
+        Clone the course repo, run <code class="inline-code">npm install</code>, then
+        <code class="inline-code">npm run ts phases/01-js-foundations/01-values-and-variables.ts</code> to
+        run your first exercise.
+      </span>
+    </div>
+
+    <h2 class="subhead" style="font-size:24px;margin-bottom:12px;">Rules</h2>
+    <ul style="color:var(--ink-soft);line-height:1.8;font-size:15.5px;padding-left:22px;">
+      <li>Stuck longer than ~15 minutes on one exercise? Reveal the matching solution on this site, read it,
+        close it, and re-write the fix yourself from memory. Copy-paste teaches nothing.</li>
+      <li><code class="inline-code">any</code> is banned. Reach for <code class="inline-code">unknown</code> + narrowing instead.</li>
+      <li>Don't skip checkpoints — they're where retention happens.</li>
+      <li>Progress on this site saves in your browser only. Clearing site data resets your checkmarks.</li>
+    </ul>
+  </div>
+</BaseLayout>

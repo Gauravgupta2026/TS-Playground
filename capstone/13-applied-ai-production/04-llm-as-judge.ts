@@ -2,8 +2,8 @@
  * Phase 13 · Exercise 04 — LLM-as-judge (with bias mitigation)
  *
  * Both must pass (no API key needed):
- *   npm run ts    phases/13-applied-ai-production/04-llm-as-judge.ts
- *   npm run check phases/13-applied-ai-production/04-llm-as-judge.ts
+ *   npm run ts    capstone/13-applied-ai-production/04-llm-as-judge.ts
+ *   npm run check capstone/13-applied-ai-production/04-llm-as-judge.ts
  *
  * You can't improve what you can't measure, and human grading doesn't scale —
  * so a model grades outputs. But a pairwise judge suffers POSITION BIAS:

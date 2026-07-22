@@ -2,8 +2,8 @@
  * Phase 13 · Exercise 01 — Contextual retrieval (BM25 + contextual chunks)
  *
  * Both must pass (no API key needed):
- *   npm run ts    phases/13-applied-ai-production/01-contextual-retrieval.ts
- *   npm run check phases/13-applied-ai-production/01-contextual-retrieval.ts
+ *   npm run ts    capstone/13-applied-ai-production/01-contextual-retrieval.ts
+ *   npm run check capstone/13-applied-ai-production/01-contextual-retrieval.ts
  *
  * A chunk embedded ALONE loses its subject: "It grew 3% that quarter" doesn't
  * know it's about ACME revenue. You'll build BM25 by hand, then show the fix —

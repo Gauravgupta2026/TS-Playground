@@ -1,0 +1,28 @@
+---
+import { getProjects } from "../lib/projects";
+
+interface Props {
+  activeSlug?: string; // undefined => "Welcome" (the /projects/ overview) is active
+}
+const { activeSlug } = Astro.props;
+const projects = getProjects();
+---
+
+<div class="docs-sidebar">
+  <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:14px;">Projects</div>
+  <a
+    href="/projects/"
+    class:list={["docs-sidebar__item", { "docs-sidebar__item--active": !activeSlug }]}
+  >
+    <span>Welcome</span>
+  </a>
+  {projects.map((p) => (
+    <a
+      href={`/projects/${p.slug}/`}
+      class:list={["docs-sidebar__item", { "docs-sidebar__item--active": activeSlug === p.slug }]}
+    >
+      <span style="width:9px;height:9px;border-radius:3px;background:var(--accent);flex:0 0 auto;"></span>
+      <span>{p.order}. {p.title}</span>
+    </a>
+  ))}
+</div>

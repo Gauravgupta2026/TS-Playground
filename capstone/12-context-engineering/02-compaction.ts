@@ -2,8 +2,8 @@
  * Phase 12 · Exercise 02 — Compaction & tool-result clearing
  *
  * Both must pass (no API key needed):
- *   npm run ts    phases/12-context-engineering/02-compaction.ts
- *   npm run check phases/12-context-engineering/02-compaction.ts
+ *   npm run ts    capstone/12-context-engineering/02-compaction.ts
+ *   npm run check capstone/12-context-engineering/02-compaction.ts
  *
  * When history nears the window limit, don't truncate blindly — SUMMARIZE the
  * old turns and reinitialize from the summary (compaction), and CLEAR stale raw

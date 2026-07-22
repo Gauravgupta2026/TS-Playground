@@ -1,0 +1,59 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getPhases } from "../../lib/phases";
+
+const phases = getPhases();
+const tracks = [
+  { key: "core", title: "Core track", blurb: "JS foundations through multi-agent systems — the main course, in order." },
+  { key: "advanced", title: "Advanced track — systems design", blurb: "Resilience and distributed-systems primitives real LLM apps run in production." },
+] as const;
+---
+
+<BaseLayout title="All Phases" active="phases">
+  <div class="container" style="padding:56px 28px 20px;">
+    <div class="kicker" style="margin-bottom:22px;">Curriculum</div>
+    <h1 class="heading" style="font-size:44px;margin-top:0;">Every phase, start to finish</h1>
+    <p class="prose">
+      {phases.length} phases. Each one has a full lesson, runnable exercises, and a no-hand-holding checkpoint that
+      gates the next phase.
+    </p>
+  </div>
+
+  {tracks.map((track) => {
+    const rows = phases.filter((p) => p.track === track.key);
+    if (rows.length === 0) return null;
+    return (
+      <div class="container" style="padding:20px 28px 50px;">
+        <h2 class="subhead" style="font-size:24px;margin-bottom:6px;">{track.title}</h2>
+        <p class="prose" style="margin-bottom:18px;">{track.blurb}</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">
+          {rows.map((p) => (
+            <a href={`/phases/${p.slug}/`} class="card" style="display:flex;flex-direction:column;gap:10px;color:inherit;">
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <span class="eyebrow-label" style="color:var(--accent-ink);">Phase {String(p.number).padStart(2, "0")}</span>
+                <span class="eyebrow-label">{p.exercises.length} files</span>
+              </div>
+              <div class="subhead">{p.title}</div>
+              <div style="height:1px;background:var(--border);margin-top:4px;"></div>
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <span style="font-size:13px;color:var(--faint);">phases/{p.slug}/</span>
+                <span style="color:var(--accent-ink);font-weight:600;font-size:13.5px;">Open →</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    );
+  })}
+
+  <div class="container" style="padding:20px 28px 60px;">
+    <a href="/projects/" class="card" style="display:flex;align-items:center;justify-content:space-between;gap:16px;color:inherit;">
+      <div>
+        <div class="eyebrow-label" style="color:var(--accent-ink);margin-bottom:6px;">After Phase 9</div>
+        <div class="subhead" style="font-size:22px;">Then: the Projects track</div>
+        <div class="prose" style="margin:6px 0 0;">Context engineering, applied AI in production, and the Multi-Agent Crew capstone.</div>
+      </div>
+      <span style="color:var(--accent-ink);font-weight:600;font-size:14.5px;white-space:nowrap;">Open →</span>
+    </a>
+  </div>
+</BaseLayout>
