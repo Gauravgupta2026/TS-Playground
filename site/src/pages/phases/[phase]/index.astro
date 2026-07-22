@@ -1,0 +1,193 @@
+---
+import { getCollection, render } from "astro:content";
+import { getPhases, type Phase } from "../../../lib/phases";
+import { highlightTs } from "../../../lib/highlight";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import ProgressCheckbox from "../../../islands/ProgressCheckbox";
+import SolutionReveal from "../../../islands/SolutionReveal";
+
+export async function getStaticPaths() {
+  const phases = getPhases();
+  return phases.map((p, i) => ({
+    params: { phase: p.slug },
+    props: { phase: p, prev: phases[i - 1] ?? null, next: phases[i + 1] ?? null },
+  }));
+}
+
+const { phase, prev, next } = Astro.props as { phase: Phase; prev: Phase | null; next: Phase | null };
+
+const entries = await getCollection("phases");
+const entry = entries.find((e) => e.id.startsWith(phase.slug));
+if (!entry) throw new Error(`No LESSON.md content-collection entry found for phase "${phase.slug}"`);
+const { Content, headings } = await render(entry);
+
+const exerciseHtml = await Promise.all(
+  phase.exercises.map(async (ex) => ({
+    ex,
+    codeHtml: await highlightTs(ex.code),
+    solutionHtml: ex.solutionCode ? await highlightTs(ex.solutionCode) : null,
+  }))
+);
+
+const allPhases = getPhases();
+// LESSON.md's own "# Phase N — Title" H1 is redundant with this page's H1
+// (rendered separately above <Content />), so it's hidden via CSS below and
+// excluded from the TOC — only the "## n. Section" headings are real anchors.
+const tocHeadings = headings.filter((h) => h.depth === 2);
+---
+
+<BaseLayout title={`Phase ${phase.number} · ${phase.title}`} active="phases">
+  <div class="docs-shell">
+    <div class="docs-sidebar">
+      <div class="eyebrow-label" style="margin-bottom:16px;">All phases</div>
+      {allPhases.map((p) => (
+        <a
+          href={`/phases/${p.slug}/`}
+          class:list={["docs-sidebar__item", { "docs-sidebar__item--active": p.slug === phase.slug }]}
+        >
+          <span style="width:9px;height:9px;border-radius:3px;background:var(--accent);flex:0 0 auto;"></span>
+          <span>{String(p.number).padStart(2, "0")} · {p.title}</span>
+        </a>
+      ))}
+    </div>
+
+    <div class="docs-content">
+      <div class="kicker" style="margin-bottom:16px;">Phase {phase.number}</div>
+      <h1 class="heading" style="font-size:44px;margin-top:0;">{phase.title}</h1>
+      <div style="height:2px;background:var(--accent);width:60px;margin-bottom:26px;"></div>
+
+      <article class="lesson-content">
+        <Content />
+      </article>
+
+      <h2 class="subhead" style="font-size:26px;margin:40px 0 18px;">Exercises</h2>
+      <p class="prose" style="margin-bottom:24px;">
+        Run each file from the repo root: <code class="inline-code">npm run ts phases/{phase.slug}/&lt;file&gt;</code>.
+        Stuck longer than ~15 minutes? Reveal the solution, read it, close it, and rewrite it from memory.
+      </p>
+
+      {exerciseHtml.map(({ ex, codeHtml, solutionHtml }) => (
+        <div id={ex.slug} style="margin-bottom:34px;scroll-margin-top:90px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px;">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <ProgressCheckbox client:load phaseSlug={phase.slug} exerciseSlug={ex.slug} />
+              <span style="font-weight:600;font-size:15px;">{ex.label}</span>
+              {ex.kind !== "exercise" && <span class="badge badge--advanced">{ex.kind}</span>}
+            </div>
+            <code class="inline-code">{ex.runCommand}</code>
+          </div>
+          <div class="code-panel">
+            <div class="code-panel__header">
+              <span class="code-panel__tag">TS</span>
+              <span class="code-panel__label">{ex.file}</span>
+            </div>
+            <Fragment set:html={codeHtml} />
+          </div>
+          {solutionHtml && <SolutionReveal client:visible solutionHtml={solutionHtml} />}
+        </div>
+      ))}
+
+      <div style="display:flex;align-items:center;justify-content:space-between;padding-top:22px;border-top:1px solid var(--border);margin-top:20px;">
+        {prev ? <a href={`/phases/${prev.slug}/`} class="btn btn--secondary">← Phase {prev.number}</a> : <span />}
+        {next ? (
+          <a href={`/phases/${next.slug}/`} class="btn btn--primary">Next: Phase {next.number} →</a>
+        ) : (
+          <a href="/capstone/" class="btn btn--primary">Capstone →</a>
+        )}
+      </div>
+    </div>
+
+    <div class="docs-toc">
+      <div class="eyebrow-label" style="margin-bottom:14px;">On this page</div>
+      {tocHeadings.map((h) => (
+        <a href={`#${h.slug}`} class="docs-toc__item" style="display:block;text-decoration:none;">{h.text}</a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .lesson-content :global(h1) {
+    display: none;
+  }
+  .lesson-content :global(h2) {
+    font-family: "Newsreader", serif;
+    font-weight: 500;
+    font-size: 26px;
+    margin: 36px 0 14px;
+    color: var(--ink);
+  }
+  .lesson-content :global(h3) {
+    font-family: "Newsreader", serif;
+    font-weight: 500;
+    font-size: 20px;
+    margin: 26px 0 10px;
+    color: var(--ink);
+  }
+  .lesson-content :global(p) {
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin: 0 0 16px;
+  }
+  .lesson-content :global(ul),
+  .lesson-content :global(ol) {
+    color: var(--ink-soft);
+    line-height: 1.7;
+    font-size: 15.5px;
+    padding-left: 22px;
+    margin: 0 0 16px;
+  }
+  .lesson-content :global(li) { margin-bottom: 6px; }
+  .lesson-content :global(code) {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.9em;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    padding: 1px 6px;
+    border-radius: 5px;
+    color: var(--accent-ink);
+  }
+  .lesson-content :global(pre) {
+    background: var(--code-bg);
+    border-radius: 14px;
+    padding: 18px;
+    overflow: auto;
+    margin: 0 0 20px;
+  }
+  .lesson-content :global(pre code) {
+    background: none;
+    border: none;
+    padding: 0;
+    color: inherit;
+  }
+  .lesson-content :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 20px;
+    font-size: 14.5px;
+  }
+  .lesson-content :global(th),
+  .lesson-content :global(td) {
+    border: 1px solid var(--border);
+    padding: 8px 12px;
+    text-align: left;
+  }
+  .lesson-content :global(blockquote) {
+    margin: 0 0 20px;
+    padding: 18px 24px;
+    border-left: 3px solid var(--accent);
+    background: var(--accent-tint);
+    border-radius: 0 12px 12px 0;
+    font-family: "Newsreader", serif;
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  .lesson-content :global(hr) {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 30px 0;
+  }
+</style>

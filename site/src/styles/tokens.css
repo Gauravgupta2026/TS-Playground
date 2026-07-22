@@ -1,0 +1,42 @@
+/* Verbatim from TS Playground Design System.dc.html — see ../../DESIGN.md */
+:root {
+  --paper: #f6f4ec;
+  --surface: #fffdf6;
+  --surface-2: #efece1;
+  --code-bg: #1f2a24;
+  --ink: #232019;
+  --ink-soft: #4a463c;
+  --muted: #77726a;
+  --faint: #9c978d;
+  --border: #e4e0d3;
+  --border-strong: #d3cec0;
+  --accent: #0f9b6a;
+  --accent-ink: #0a6f4c;
+  --accent-tint: #e4f2ea;
+  --accent-contrast: #ffffff;
+  --warn: #b8791b;
+  --warn-tint: #f6edda;
+  --shadow: 0 1px 2px rgba(40, 36, 25, 0.05), 0 10px 26px -14px rgba(40, 36, 25, 0.16);
+  --dot: rgba(40, 36, 25, 0.07);
+}
+
+[data-theme="dark"] {
+  --paper: #181712;
+  --surface: #211f18;
+  --surface-2: #2a2820;
+  --code-bg: #12140f;
+  --ink: #f3f0e6;
+  --ink-soft: #d7d3c6;
+  --muted: #a6a196;
+  --faint: #787369;
+  --border: #332f26;
+  --border-strong: #423d31;
+  --accent: #2fd08a;
+  --accent-ink: #5ee3a6;
+  --accent-tint: #152820;
+  --accent-contrast: #0c130f;
+  --warn: #e0a94b;
+  --warn-tint: #2a2313;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 14px 32px -16px rgba(0, 0, 0, 0.65);
+  --dot: rgba(255, 255, 255, 0.055);
+}
