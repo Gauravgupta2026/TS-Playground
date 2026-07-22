@@ -5,3 +5,5 @@ dist/
 *.log
 # local model cache for @huggingface/transformers
 .cache/
+
+TS Playground design system/
