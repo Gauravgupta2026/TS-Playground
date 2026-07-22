@@ -2,8 +2,8 @@
  * Phase 13 · Exercise 06 — Observability with OpenTelemetry GenAI spans
  *
  * Both must pass (no API key needed):
- *   npm run ts    phases/13-applied-ai-production/06-observability.ts
- *   npm run check phases/13-applied-ai-production/06-observability.ts
+ *   npm run ts    capstone/13-applied-ai-production/06-observability.ts
+ *   npm run check capstone/13-applied-ai-production/06-observability.ts
  *
  * A model call is a black box until you trace it. The industry standard is
  * OpenTelemetry's GenAI semantic conventions: wrap each call in a SPAN carrying

@@ -2,8 +2,8 @@
  * Phase 12 · CHECKPOINT — a long-running research agent
  *
  * Both must pass (no API key needed):
- *   npm run ts    phases/12-context-engineering/checkpoint-research-harness.ts
- *   npm run check phases/12-context-engineering/checkpoint-research-harness.ts
+ *   npm run ts    capstone/12-context-engineering/checkpoint-research-harness.ts
+ *   npm run check capstone/12-context-engineering/checkpoint-research-harness.ts
  *
  * Compose the phase: a lead that PLANS subtasks, runs each in an ISOLATED
  * subagent (returning only a condensed summary), writes findings to external

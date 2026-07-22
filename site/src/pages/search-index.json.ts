@@ -1,5 +1,6 @@
 import type { APIRoute } from "astro";
 import { getPhases } from "../lib/phases";
+import { getProjects } from "../lib/projects";
 
 export interface SearchEntry {
   title: string;
@@ -20,7 +21,17 @@ export const GET: APIRoute = () => {
     }
   }
 
-  entries.push({ title: "Capstone · RAG-powered research CLI", section: "Capstone", url: "/capstone/" });
+  entries.push({ title: "Projects overview", section: "Projects", url: "/projects/" });
+  for (const project of getProjects()) {
+    const projectUrl = `/projects/${project.slug}/`;
+    entries.push({ title: `Project ${project.order} · ${project.title}`, section: "Projects", url: projectUrl });
+    if (project.kind === "lesson") {
+      for (const ex of project.exercises) {
+        entries.push({ title: ex.label, section: `Project ${project.order} · ${project.title}`, url: `${projectUrl}#${ex.slug}` });
+      }
+    }
+  }
+
   entries.push({ title: "About this course", section: "About", url: "/about/" });
 
   return new Response(JSON.stringify(entries), {

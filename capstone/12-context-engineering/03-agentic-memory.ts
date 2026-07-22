@@ -2,8 +2,8 @@
  * Phase 12 · Exercise 03 — Agentic memory (structured note-taking)
  *
  * Both must pass (no API key needed):
- *   npm run ts    phases/12-context-engineering/03-agentic-memory.ts
- *   npm run check phases/12-context-engineering/03-agentic-memory.ts
+ *   npm run ts    capstone/12-context-engineering/03-agentic-memory.ts
+ *   npm run check capstone/12-context-engineering/03-agentic-memory.ts
  *
  * Compaction is lossy. For facts that must survive EXACTLY across context
  * resets, the agent writes notes to storage OUTSIDE the window and reloads them

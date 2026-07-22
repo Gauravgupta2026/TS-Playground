@@ -3,14 +3,14 @@ import ThemeToggle from "../islands/ThemeToggle";
 import SearchPalette from "../islands/SearchPalette";
 
 interface Props {
-  active?: "home" | "phases" | "capstone" | "about";
+  active?: "home" | "phases" | "projects" | "about";
 }
 const { active } = Astro.props;
 
 const links = [
   { href: "/", label: "Home", key: "home" },
   { href: "/phases/", label: "Phases", key: "phases" },
-  { href: "/capstone/", label: "Capstone", key: "capstone" },
+  { href: "/projects/", label: "Projects", key: "projects" },
   { href: "/about/", label: "About", key: "about" },
 ] as const;
 ---

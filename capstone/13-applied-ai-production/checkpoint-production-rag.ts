@@ -2,8 +2,8 @@
  * Phase 13 · CHECKPOINT — a production RAG endpoint
  *
  * Both must pass (no API key needed):
- *   npm run ts    phases/13-applied-ai-production/checkpoint-production-rag.ts
- *   npm run check phases/13-applied-ai-production/checkpoint-production-rag.ts
+ *   npm run ts    capstone/13-applied-ai-production/checkpoint-production-rag.ts
+ *   npm run check capstone/13-applied-ai-production/checkpoint-production-rag.ts
  *
  * Compose the phase into the request path a real RAG service runs:
  *   input guardrails → semantic cache → retrieve → traced generation →

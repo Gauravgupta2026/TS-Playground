@@ -2,8 +2,8 @@
  * Phase 13 · Exercise 07 — Guardrail pipeline
  *
  * Both must pass (no API key needed):
- *   npm run ts    phases/13-applied-ai-production/07-guardrails.ts
- *   npm run check phases/13-applied-ai-production/07-guardrails.ts
+ *   npm run ts    capstone/13-applied-ai-production/07-guardrails.ts
+ *   npm run check capstone/13-applied-ai-production/07-guardrails.ts
  *
  * The boundary principle (Phase 5) at production scale. Input guardrails
  * sanitize untrusted input before it reaches the model (redact PII, block

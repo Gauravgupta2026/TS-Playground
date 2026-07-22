@@ -36,5 +36,14 @@ const totalExercises = phases.reduce((n, p) => n + p.exercises.length, 0);
     <div class="kicker" style="margin-bottom:8px;">Curriculum · {phases.length} phases</div>
     <p class="prose" style="margin:0 0 22px;">Pick up where you left off. Each phase ships when its lessons, exercises, and checkpoint are all written.</p>
     <PhaseList client:load phases={phaseRows} />
+
+    <a href="/projects/" class="card" style="display:flex;align-items:center;justify-content:space-between;gap:16px;color:inherit;margin-top:26px;">
+      <div>
+        <div class="eyebrow-label" style="color:var(--accent-ink);margin-bottom:6px;">After Phase 9</div>
+        <div class="subhead" style="font-size:22px;">Then: the Projects track →</div>
+        <div class="prose" style="margin:6px 0 0;">Context engineering, applied AI in production, and the Multi-Agent Crew capstone.</div>
+      </div>
+      <span style="color:var(--accent-ink);font-weight:600;font-size:14.5px;white-space:nowrap;">Open →</span>
+    </a>
   </div>
 </BaseLayout>

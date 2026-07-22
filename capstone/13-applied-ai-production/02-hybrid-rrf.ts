@@ -2,8 +2,8 @@
  * Phase 13 · Exercise 02 — Hybrid search with Reciprocal Rank Fusion
  *
  * Both must pass (no API key needed):
- *   npm run ts    phases/13-applied-ai-production/02-hybrid-rrf.ts
- *   npm run check phases/13-applied-ai-production/02-hybrid-rrf.ts
+ *   npm run ts    capstone/13-applied-ai-production/02-hybrid-rrf.ts
+ *   npm run check capstone/13-applied-ai-production/02-hybrid-rrf.ts
  *
  * Semantic search grasps meaning but fumbles exact tokens (names, IDs, error
  * codes); BM25 nails tokens but misses paraphrases. Run BOTH and merge by RANK,

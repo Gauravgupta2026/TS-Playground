@@ -76,7 +76,27 @@ A phase is done only when its checkpoint passes.
 - [ ] drill-boundary.ts
 - [ ] drill-agent.ts
 
-## Capstone — Research Crew
+## Capstone Projects (after Phase 9)
+
+### Project 1 — Context Engineering & Agent Harnesses
+- [ ] 01-context-budget.ts
+- [ ] 02-compaction.ts
+- [ ] 03-agentic-memory.ts
+- [ ] 04-subagent-isolation.ts
+- [ ] 05-long-running-harness.ts
+- [ ] checkpoint-research-harness.ts
+
+### Project 2 — Applied AI in Production
+- [ ] 01-contextual-retrieval.ts
+- [ ] 02-hybrid-rrf.ts
+- [ ] 03-reranking.ts
+- [ ] 04-llm-as-judge.ts
+- [ ] 05-semantic-cache.ts
+- [ ] 06-observability.ts
+- [ ] 07-guardrails.ts
+- [ ] checkpoint-production-rag.ts
+
+### Project 3 — Multi-Agent Crew (Research Crew capstone)
 - [ ] Ingest pipeline working
 - [ ] Planner → Researcher → Writer → Critic loop working (dry-run)
 - [ ] Live run with API key
@@ -100,21 +120,3 @@ A phase is done only when its checkpoint passes.
 - [ ] 04-distributed-rate-limit.ts
 - [ ] 05-idempotency.ts
 - [ ] checkpoint-distributed-cache.ts
-
-## Phase 12 — Context Engineering & Agent Harnesses (frontier track)
-- [ ] 01-context-budget.ts
-- [ ] 02-compaction.ts
-- [ ] 03-agentic-memory.ts
-- [ ] 04-subagent-isolation.ts
-- [ ] 05-long-running-harness.ts
-- [ ] checkpoint-research-harness.ts
-
-## Phase 13 — Applied AI in Production (frontier track)
-- [ ] 01-contextual-retrieval.ts
-- [ ] 02-hybrid-rrf.ts
-- [ ] 03-reranking.ts
-- [ ] 04-llm-as-judge.ts
-- [ ] 05-semantic-cache.ts
-- [ ] 06-observability.ts
-- [ ] 07-guardrails.ts
-- [ ] checkpoint-production-rag.ts

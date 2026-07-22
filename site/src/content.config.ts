@@ -13,4 +13,12 @@ const capstone = defineCollection({
   loader: glob({ pattern: "README.md", base: "../capstone" }),
 });
 
-export const collections = { phases, capstone };
+// Phase 12/13's LESSON.md files now live under capstone/ (see
+// src/lib/projects.ts) but render through the same markdown pipeline as
+// phase lessons — kept as a separate collection so it doesn't collide with
+// the `capstone` collection above, which globs capstone/README.md only.
+const projectLessons = defineCollection({
+  loader: glob({ pattern: "1[23]-*/LESSON.md", base: "../capstone" }),
+});
+
+export const collections = { phases, capstone, projectLessons };

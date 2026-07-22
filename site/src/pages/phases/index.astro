@@ -6,7 +6,6 @@ const phases = getPhases();
 const tracks = [
   { key: "core", title: "Core track", blurb: "JS foundations through multi-agent systems — the main course, in order." },
   { key: "advanced", title: "Advanced track — systems design", blurb: "Resilience and distributed-systems primitives real LLM apps run in production." },
-  { key: "frontier", title: "Frontier track — how top AI labs build today", blurb: "Context engineering, agent harnesses, and production RAG techniques." },
 ] as const;
 ---
 
@@ -46,4 +45,15 @@ const tracks = [
       </div>
     );
   })}
+
+  <div class="container" style="padding:20px 28px 60px;">
+    <a href="/projects/" class="card" style="display:flex;align-items:center;justify-content:space-between;gap:16px;color:inherit;">
+      <div>
+        <div class="eyebrow-label" style="color:var(--accent-ink);margin-bottom:6px;">After Phase 9</div>
+        <div class="subhead" style="font-size:22px;">Then: the Projects track</div>
+        <div class="prose" style="margin:6px 0 0;">Context engineering, applied AI in production, and the Multi-Agent Crew capstone.</div>
+      </div>
+      <span style="color:var(--accent-ink);font-weight:600;font-size:14.5px;white-space:nowrap;">Open →</span>
+    </a>
+  </div>
 </BaseLayout>

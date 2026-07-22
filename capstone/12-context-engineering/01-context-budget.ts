@@ -2,8 +2,8 @@
  * Phase 12 · Exercise 01 — The attention budget
  *
  * Both must pass (no API key needed):
- *   npm run ts    phases/12-context-engineering/01-context-budget.ts
- *   npm run check phases/12-context-engineering/01-context-budget.ts
+ *   npm run ts    capstone/12-context-engineering/01-context-budget.ts
+ *   npm run check capstone/12-context-engineering/01-context-budget.ts
  *
  * Context is a budget, not a bucket. Every block competes for the model's
  * finite attention. You assemble a request by keeping the ESSENTIALS pinned

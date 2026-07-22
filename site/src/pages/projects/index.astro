@@ -1,0 +1,66 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProjectsSidebar from "../../components/ProjectsSidebar.astro";
+import { getProjects } from "../../lib/projects";
+
+const projects = getProjects();
+---
+
+<BaseLayout title="Projects" active="projects">
+  <div class="docs-shell">
+    <ProjectsSidebar />
+
+    <div class="docs-content">
+      <h1 class="display" style="font-size:clamp(38px,5vw,52px);">Welcome to Projects</h1>
+      <p style="font-size:16.5px;line-height:1.75;color:var(--ink-soft);margin:22px 0 30px;max-width:640px;">
+        This is the frontier AI engineering half of the course — reading lessons isn't enough here. You build each
+        system yourself and watch how a typed codebase, and the agents working inside it, actually behave. Gated by
+        Phase 9's readiness drills; take it one project at a time.
+      </p>
+      <div class="hairline" style="margin-bottom:30px;"></div>
+
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;">
+        <span style="color:var(--accent);font-family:'Newsreader',serif;font-size:28px;">#</span>
+        <h2 id="project-overview" class="subhead" style="font-size:30px;scroll-margin-top:90px;">Project Overview</h2>
+      </div>
+      <p style="font-size:16px;line-height:1.75;color:var(--ink-soft);margin:0 0 26px;max-width:640px;">
+        Three progressive, hands-on projects take you from budgeted context assembly to a portfolio-grade,
+        multi-agent research CLI:
+      </p>
+
+      {projects.map((p) => (
+        <div style="display:flex;gap:18px;margin-bottom:20px;max-width:660px;">
+          <span style="color:var(--accent);font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:16px;flex:0 0 auto;">{p.order}.</span>
+          <div style="font-size:16px;line-height:1.65;color:var(--ink-soft);">
+            <a href={`/projects/${p.slug}/`} style="color:var(--ink);font-weight:600;">{p.title}</a>: {p.description}
+          </div>
+        </div>
+      ))}
+
+      <div class="hairline" style="margin:34px 0 30px;"></div>
+      <h2 id="how-to-proceed" class="subhead" style="font-size:30px;margin-bottom:16px;scroll-margin-top:90px;">How to Proceed</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:680px;" data-stack>
+        <div class="card">
+          <div class="eyebrow-label" style="color:var(--accent-ink);margin-bottom:9px;">Each project has</div>
+          <div style="font-size:14.5px;line-height:1.6;color:var(--ink-soft);">
+            A full lesson, runnable exercises, and (for the two lesson-shaped projects) a checkpoint that proves you
+            can build the whole thing without hand-holding.
+          </div>
+        </div>
+        <div class="card">
+          <div class="eyebrow-label" style="color:var(--accent-ink);margin-bottom:9px;">Go at your pace</div>
+          <div style="font-size:14.5px;line-height:1.6;color:var(--ink-soft);">
+            Progress saves in your browser only. Nothing is graded — a green checkpoint and a working capstone are
+            the reward.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="docs-toc">
+      <div class="eyebrow-label" style="margin-bottom:14px;">On this page</div>
+      <a href="#project-overview" class="docs-toc__item docs-toc__item--active" style="display:block;text-decoration:none;">Project Overview</a>
+      <a href="#how-to-proceed" class="docs-toc__item" style="display:block;text-decoration:none;">How to Proceed</a>
+    </div>
+  </div>
+</BaseLayout>

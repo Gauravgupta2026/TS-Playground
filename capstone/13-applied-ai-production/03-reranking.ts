@@ -2,8 +2,8 @@
  * Phase 13 · Exercise 03 — Reranking for top-k precision
  *
  * Both must pass (no API key needed):
- *   npm run ts    phases/13-applied-ai-production/03-reranking.ts
- *   npm run check phases/13-applied-ai-production/03-reranking.ts
+ *   npm run ts    capstone/13-applied-ai-production/03-reranking.ts
+ *   npm run check capstone/13-applied-ai-production/03-reranking.ts
  *
  * Retrieval is cheap and recall-oriented: it casts a wide net, and the truly
  * relevant doc can land at rank 40. A reranker is expensive and

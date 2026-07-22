@@ -2,8 +2,8 @@
  * Phase 12 · Exercise 05 — The long-running harness
  *
  * Both must pass (no API key needed):
- *   npm run ts    phases/12-context-engineering/05-long-running-harness.ts
- *   npm run check phases/12-context-engineering/05-long-running-harness.ts
+ *   npm run ts    capstone/12-context-engineering/05-long-running-harness.ts
+ *   npm run check capstone/12-context-engineering/05-long-running-harness.ts
  *
  * Long tasks span many sessions, each with a fresh window. The HARNESS is the
  * scaffolding that survives that: externalized state (features with pass/fail),

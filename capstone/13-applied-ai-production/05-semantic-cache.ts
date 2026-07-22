@@ -2,8 +2,8 @@
  * Phase 13 · Exercise 05 — Semantic caching
  *
  * Both must pass (no API key needed):
- *   npm run ts    phases/13-applied-ai-production/05-semantic-cache.ts
- *   npm run check phases/13-applied-ai-production/05-semantic-cache.ts
+ *   npm run ts    capstone/13-applied-ai-production/05-semantic-cache.ts
+ *   npm run check capstone/13-applied-ai-production/05-semantic-cache.ts
  *
  * Exact-match caching only helps on IDENTICAL prompts. A semantic cache embeds
  * the incoming prompt, finds the nearest cached prompt by cosine similarity,
