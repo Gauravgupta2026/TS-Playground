@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import type { SearchEntry } from "../pages/search-index.json.ts";
 
 export default function SearchPalette() {
@@ -70,86 +71,95 @@ export default function SearchPalette() {
         </span>
       </button>
 
-      {open && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          onClick={() => setOpen(false)}
-          style={{
-            position: "fixed",
-            inset: 0,
-            background: "rgba(20,18,12,0.45)",
-            zIndex: 100,
-            display: "flex",
-            justifyContent: "center",
-            paddingTop: "12vh",
-          }}
-        >
+      {open &&
+        createPortal(
+          // Portalled to document.body — rendering this fixed-position
+          // overlay as a DOM descendant of the nav bar breaks it, because
+          // .nav-bar's `backdrop-filter` creates a containing block for
+          // `position: fixed` children (CSS spec behavior), clamping the
+          // "fullscreen" overlay to the nav bar's own ~60px height instead
+          // of the viewport. A portal sidesteps that regardless of what
+          // CSS any ancestor ever gains.
           <div
-            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            onClick={() => setOpen(false)}
             style={{
-              width: "min(560px, 92vw)",
-              maxHeight: "60vh",
-              background: "var(--surface)",
-              border: "1px solid var(--border)",
-              borderRadius: 14,
-              boxShadow: "var(--shadow)",
-              overflow: "hidden",
+              position: "fixed",
+              inset: 0,
+              background: "rgba(20,18,12,0.45)",
+              zIndex: 100,
               display: "flex",
-              flexDirection: "column",
+              justifyContent: "center",
+              paddingTop: "12vh",
             }}
           >
-            <input
-              ref={inputRef}
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search phases and exercises…"
+            <div
+              onClick={(e) => e.stopPropagation()}
               style={{
-                padding: "16px 18px",
-                border: "none",
-                borderBottom: "1px solid var(--border)",
-                background: "transparent",
-                color: "var(--ink)",
-                font: "inherit",
-                fontSize: 15,
-                outline: "none",
+                width: "min(560px, 92vw)",
+                maxHeight: "60vh",
+                background: "var(--surface)",
+                border: "1px solid var(--border)",
+                borderRadius: 14,
+                boxShadow: "var(--shadow)",
+                overflow: "hidden",
+                display: "flex",
+                flexDirection: "column",
               }}
-            />
-            <div style={{ overflowY: "auto" }}>
-              {query.trim() && results.length === 0 && (
-                <div style={{ padding: 18, color: "var(--muted)", fontSize: 14 }}>No matches.</div>
-              )}
-              {results.map((r) => (
-                <a
-                  key={r.url}
-                  href={r.url}
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: 2,
-                    padding: "12px 18px",
-                    borderBottom: "1px solid var(--border)",
-                    color: "var(--ink)",
-                  }}
-                >
-                  <span style={{ fontSize: 14.5, fontWeight: 500 }}>{r.title}</span>
-                  <span
+            >
+              <input
+                ref={inputRef}
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search phases and exercises…"
+                style={{
+                  padding: "16px 18px",
+                  border: "none",
+                  borderBottom: "1px solid var(--border)",
+                  background: "transparent",
+                  color: "var(--ink)",
+                  font: "inherit",
+                  fontSize: 15,
+                  outline: "none",
+                }}
+              />
+              <div style={{ overflowY: "auto" }}>
+                {query.trim() && results.length === 0 && (
+                  <div style={{ padding: 18, color: "var(--muted)", fontSize: 14 }}>No matches.</div>
+                )}
+                {results.map((r) => (
+                  <a
+                    key={r.url}
+                    href={r.url}
                     style={{
-                      fontFamily: "'IBM Plex Mono',monospace",
-                      fontSize: 11,
-                      letterSpacing: "0.08em",
-                      textTransform: "uppercase",
-                      color: "var(--muted)",
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 2,
+                      padding: "12px 18px",
+                      borderBottom: "1px solid var(--border)",
+                      color: "var(--ink)",
                     }}
                   >
-                    {r.section}
-                  </span>
-                </a>
-              ))}
+                    <span style={{ fontSize: 14.5, fontWeight: 500 }}>{r.title}</span>
+                    <span
+                      style={{
+                        fontFamily: "'IBM Plex Mono',monospace",
+                        fontSize: 11,
+                        letterSpacing: "0.08em",
+                        textTransform: "uppercase",
+                        color: "var(--muted)",
+                      }}
+                    >
+                      {r.section}
+                    </span>
+                  </a>
+                ))}
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body
+        )}
     </>
   );
 }
